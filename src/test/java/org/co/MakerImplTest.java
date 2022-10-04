@@ -18,11 +18,20 @@ class MakerImplTest {
         Order hotChocolate = new Order(Drink.CHOCOLATE,1, 2d, true );
         //The drink maker will make an extra hot tea with two sugar and a stick
         Order hotThea = new Order(Drink.THE, 2, 1d, true);
+        Order Thea = new Order(Drink.THE, 2, 1d, false);
+
 
         assertEquals(maker.transformer(juice), "O::");
         assertEquals(maker.transformer(hotCoffee), "Ch::");
         assertEquals(maker.transformer(hotChocolate), "Hh:1:0");
         assertEquals(maker.transformer(hotThea), "Th:2:0");
+        assertEquals(maker.transformer(Thea), "T:2:0");
+
+        assertEquals(maker.getAmountReport().size(), 4);
+        assertEquals(maker.getAmountReport().get(Drink.JUICE.type),1);
+        assertEquals(maker.getAmountReport().get(Drink.COFFEE.type),1);
+        assertEquals(maker.getAmountReport().get(Drink.CHOCOLATE.type),2);
+        assertEquals(maker.getAmountReport().get(Drink.THE.type),2);
 
     }
 }
