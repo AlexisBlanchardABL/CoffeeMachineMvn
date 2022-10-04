@@ -1,4 +1,4 @@
-package coffeeMachine;
+package org.co;
 
 public interface DrinkMaker {
 
