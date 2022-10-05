@@ -3,14 +3,17 @@ package org.co;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MakerImpl implements Maker {
+public class MakerImpl implements Maker, BeverageQuantityChecker, EmailNotifier {
 
 	private Map<String, Double> amountReport = new HashMap<>();
 	private Map<String, Integer> numberReport = new HashMap<>();
 
 	@Override
 	public String transformer(Order order) {
-		
+		if(isEmpty(order.getDrink().type)){
+			notifyMissingDrink(order.getDrink().name());
+			return "Sorry!! we have a shortage of " + order.getDrink().name() + ", a mail was sent to the company!";
+		}
 		if(order.getAmount() < order.getDrink().price) {
 			return "M:{the amount is lower than the drink price you need: " + ( order.getDrink().price - order.getAmount()) +" }";
 		}
@@ -49,4 +52,16 @@ public class MakerImpl implements Maker {
 	public Map<String, Integer> getNumberReport(){
 		return this.numberReport;
 	}
+
+	@Override
+	public boolean isEmpty(String drink) {
+		return true;
+	}
+
+	@Override
+	public void notifyMissingDrink(String drink) {
+		// send a message logic
+	}
+
+
 }
