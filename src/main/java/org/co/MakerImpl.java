@@ -14,8 +14,8 @@ public class MakerImpl implements Maker, BeverageQuantityChecker, EmailNotifier 
 			notifyMissingDrink(order.getDrink().name());
 			return "Sorry!! we have a shortage of " + order.getDrink().name() + ", an E-mail was sent to the company!";
 		}
-		if(order.isAmountLowerThanPrice()) {
-			return "M:{the amount is lower than the drink price you need: " + ( order.getDrink().getPrice() - order.getAmount()) +" }";
+		if(order.missingAmount() > 0) {
+			return "M:{the amount is lower than the drink price you need: " + order.missingAmount() +" }";
 		}
 		addDrinkToReport(order.getDrink(), order.getAmount());
 		return new StringBuilder()

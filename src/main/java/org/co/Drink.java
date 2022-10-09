@@ -15,12 +15,8 @@ public enum Drink {
 		this.price = price;
 	}
 
-	public boolean isPriceHigherThan(double amount) {
-		return this.price > amount;
-	}
-
-	public double getPrice() {
-		return price;
+	public double missingAmount(double amount) {
+		return this.price - amount;
 	}
 
 	public String getType() {

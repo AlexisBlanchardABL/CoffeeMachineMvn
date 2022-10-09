@@ -31,8 +31,8 @@ public class Order {
 		return hot;
 	}
 
-	boolean isAmountLowerThanPrice() {
-		return this.drink.isPriceHigherThan(amount);
+	double missingAmount() {
+		return this.drink.missingAmount(amount);
 	}
 
 }
