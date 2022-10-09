@@ -35,6 +35,7 @@ class DrinkReporterTest {
         verify(printer).print("Number of COFFEE sold: 3 for a total of : 1.8 euros");
         verify(printer).print("Number of CHOCOLATE sold: 1 for a total of : 0.5 euros");
         verify(printer).print("Number of JUICE sold: 1 for a total of : 0.6 euros");
+        verify(printer).print("Total Revenue: 3.7 euros");
     }
 
 }
