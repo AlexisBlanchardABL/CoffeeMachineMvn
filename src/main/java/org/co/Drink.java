@@ -15,8 +15,8 @@ public enum Drink {
 		this.price = price;
 	}
 
-	public double missingAmount(double amount) {
-		return this.price - amount;
+	public double missingAmount(Amount amount) {
+		return Amount.of(this.price).subtract(amount).toDouble();
 	}
 
 	public String getCommand() {

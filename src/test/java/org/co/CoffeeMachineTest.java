@@ -80,10 +80,10 @@ class CoffeeMachineTest {
 
     @Test
     void orderWhenProvidedAmountIsLowerThanPrice() {
-        Order hotCoffee = new Order(COFFEE, 0, 0.1, true);
+        Order hotCoffee = new Order(COFFEE, 0, 0.2, true);
 
         coffeeMachine.order(hotCoffee);
-        verify(drinkMaker).receive("M:{the amount is lower than the drink price you need: 0.5 }");
+        verify(drinkMaker).receive("M:{the amount is lower than the drink price you need: 0.4 }");
     }
 
     @Test

@@ -1,6 +1,5 @@
 package org.co;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +17,7 @@ public class DrinkReporter {
         if (this.drinkRevenue.containsKey(drink)) {
             Double previousRevenue = this.drinkRevenue.get(drink);
             Integer previousCount = this.drinkCount.get(drink);
-            this.drinkRevenue.put(drink, add(previousRevenue, drink.getPrice()));
+            this.drinkRevenue.put(drink, Amount.of(previousRevenue).add(Amount.of(drink.getPrice())).toDouble());
             this.drinkCount.put(drink, previousCount + 1);
         } else {
             this.drinkRevenue.put(drink, drink.getPrice());
@@ -39,11 +38,6 @@ public class DrinkReporter {
         printer.print(
                 "Total Revenue: " + totalRevenue + " " + currency
         );
-    }
-
-    private static Double add(double previousAmount, double drinkPrice) {
-        return BigDecimal.valueOf(previousAmount)
-                .add(BigDecimal.valueOf(drinkPrice)).doubleValue();
     }
 
 }
