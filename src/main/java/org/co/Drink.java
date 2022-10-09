@@ -22,4 +22,9 @@ public enum Drink {
 	public String getCommand() {
 		return command;
 	}
+
+	public Double getPrice() {
+		return price;
+	}
+
 }
