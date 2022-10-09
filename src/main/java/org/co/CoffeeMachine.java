@@ -22,7 +22,8 @@ public class CoffeeMachine {
 	}
 
 	public void order(Order order) {
-		if(isEmpty(order.getDrink())) {
+		Drink drink = order.getDrink();
+		if(isEmpty(drink)) {
 			emailNotifier.notifyMissingDrink(order.getDrink().name());
 			drinkMaker.receive("M:Sorry!! we have a shortage of " + order.getDrink().name() + ", an E-mail was sent to the company!");
 			return;
@@ -31,15 +32,9 @@ public class CoffeeMachine {
 			drinkMaker.receive("M:{the amount is lower than the drink price you need: " + order.missingAmount() +" }");
 			return;
 		}
-		addDrinkToReport(order.getDrink());
+		addDrinkToReport(drink);
 		drinkMaker.receive(
-				new StringBuilder()
-						.append(order.getDrink().getCommand())
-						.append(order.isHot() ? "h": "")
-						.append(":")
-						.append(order.getSugar() > 0 ? order.getSugar() : "")
-						.append(":")
-						.append(order.getSugar() > 0 ? "0" : "").toString()
+				order.instruction()
 		);
 	}
 
