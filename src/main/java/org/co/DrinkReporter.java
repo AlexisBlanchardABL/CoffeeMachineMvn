@@ -28,8 +28,11 @@ public class DrinkReporter {
 
     public void printReport() {
         for (Drink drink : Drink.values()) {
-            printer.print("Amount of " + drink.name() + " sold is : " + this.amountReport.getOrDefault(drink, 0d));
-            printer.print("Number of " + drink.name() + " sold is : " + this.numberReport.getOrDefault(drink, 0));
+            Integer drinkCount = this.numberReport.getOrDefault(drink, 0);
+            Double drinkRevenue = this.amountReport.getOrDefault(drink, 0d);
+            printer.print(
+                    "Number of " + drink.name() + " sold: " + drinkCount + " for a total of : " + drinkRevenue + " euros"
+            );
         }
     }
 

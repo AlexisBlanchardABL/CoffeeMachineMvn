@@ -31,14 +31,10 @@ class DrinkReporterTest {
         drinkReporter.addDrink(Drink.JUICE);
 
         drinkReporter.printReport();
-        verify(printer).print("Amount of THE sold is : 0.8");
-        verify(printer).print("Amount of COFFEE sold is : 1.8");
-        verify(printer).print("Amount of CHOCOLATE sold is : 0.5");
-        verify(printer).print("Amount of JUICE sold is : 0.6");
-        verify(printer).print("Number of THE sold is : 2");
-        verify(printer).print("Number of COFFEE sold is : 3");
-        verify(printer).print("Number of CHOCOLATE sold is : 1");
-        verify(printer).print("Number of JUICE sold is : 1");
+        verify(printer).print("Number of THE sold: 2 for a total of : 0.8 euros");
+        verify(printer).print("Number of COFFEE sold: 3 for a total of : 1.8 euros");
+        verify(printer).print("Number of CHOCOLATE sold: 1 for a total of : 0.5 euros");
+        verify(printer).print("Number of JUICE sold: 1 for a total of : 0.6 euros");
     }
 
 }
