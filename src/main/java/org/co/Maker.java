@@ -9,5 +9,5 @@ public interface Maker {
 	void printReport(Drink drink);
 
 	Map<String, Double>  getAmountReport();
-	Map<String, Integer>  getNumberReport();
+
 }
