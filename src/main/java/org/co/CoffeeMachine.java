@@ -1,39 +1,46 @@
 package org.co;
 
 
-public class MakerImpl implements Maker {
+public class CoffeeMachine {
 
+	private final DrinkMaker drinkMaker;
 	private final BeverageQuantityChecker beverageQuantityChecker;
 	private final DrinkReporter drinkReporter;
 	private final EmailNotifier emailNotifier;
 
-	public MakerImpl(
+	public CoffeeMachine(
+			DrinkMaker drinkMaker,
 			BeverageQuantityChecker beverageQuantityChecker,
 			DrinkReporter drinkReporter,
 			EmailNotifier emailNotifier
+
 	) {
+		this.drinkMaker = drinkMaker;
 		this.beverageQuantityChecker = beverageQuantityChecker;
 		this.drinkReporter = drinkReporter;
 		this.emailNotifier = emailNotifier;
 	}
 
-	@Override
-	public String transformer(Order order) {
+	public void order(Order order) {
 		if(isEmpty(order.getDrink())) {
 			emailNotifier.notifyMissingDrink(order.getDrink().name());
-			return "Sorry!! we have a shortage of " + order.getDrink().name() + ", an E-mail was sent to the company!";
+			drinkMaker.receive("M:Sorry!! we have a shortage of " + order.getDrink().name() + ", an E-mail was sent to the company!");
+			return;
 		}
 		if(order.missingAmount() > 0) {
-			return "M:{the amount is lower than the drink price you need: " + order.missingAmount() +" }";
+			drinkMaker.receive("M:{the amount is lower than the drink price you need: " + order.missingAmount() +" }");
+			return;
 		}
 		addDrinkToReport(order.getDrink());
-		return new StringBuilder()
-		.append(order.getDrink().getCommand())
-		.append(order.isHot() ? "h": "")
-		.append(":")
-		.append(order.getSucre() > 0 ? order.getSucre() : "")
-		.append(":")
-		.append(order.getSucre() > 0 ? "0" : "").toString();
+		drinkMaker.receive(
+				new StringBuilder()
+						.append(order.getDrink().getCommand())
+						.append(order.isHot() ? "h": "")
+						.append(":")
+						.append(order.getSucre() > 0 ? order.getSucre() : "")
+						.append(":")
+						.append(order.getSucre() > 0 ? "0" : "").toString()
+		);
 	}
 
 	private void addDrinkToReport(Drink drink){
