@@ -28,10 +28,8 @@ public class DrinkReporter {
 
     public void printReport() {
         for (Drink drink : Drink.values()) {
-            double amountReport2 = this.amountReport.get(drink) != null ? this.amountReport.get(drink) : 0;
-            printer.print("Amount of " + drink.name() + " sold is : " + amountReport2);
-            double amountReport1 = this.numberReport.get(drink) != null ? this.numberReport.get(drink) : 0;
-            printer.print("Number of " + drink.name() + " sold is : " + amountReport1);
+            printer.print("Amount of " + drink.name() + " sold is : " + this.amountReport.getOrDefault(drink, 0d));
+            printer.print("Number of " + drink.name() + " sold is : " + this.numberReport.getOrDefault(drink, 0));
         }
     }
 
