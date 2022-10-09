@@ -7,11 +7,11 @@ public enum Drink {
 	CHOCOLATE("H",0.5d ),
 	JUICE("O", 0.6d);
 
-	private final String type;
+	private final String command;
 	private final double price;
 
-	Drink(String type,double price){
-		this.type = type;
+	Drink(String command, double price){
+		this.command = command;
 		this.price = price;
 	}
 
@@ -19,8 +19,7 @@ public enum Drink {
 		return this.price - amount;
 	}
 
-	public String getType() {
-		return type;
+	public String getCommand() {
+		return command;
 	}
-
 }

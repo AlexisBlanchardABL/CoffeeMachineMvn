@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class MakerImpl implements Maker, EmailNotifier {
 
-	private final Map<String, Double> amountReport = new HashMap<>();
-	private final Map<String, Integer> numberReport = new HashMap<>();
+	private final Map<Drink, Double> amountReport = new HashMap<>();
+	private final Map<Drink, Integer> numberReport = new HashMap<>();
 	private final BeverageQuantityChecker beverageQuantityChecker;
 
 	public MakerImpl(BeverageQuantityChecker beverageQuantityChecker) {
@@ -24,7 +24,7 @@ public class MakerImpl implements Maker, EmailNotifier {
 		}
 		addDrinkToReport(order.getDrink(), order.getAmount());
 		return new StringBuilder()
-		.append(order.getDrink().getType())
+		.append(order.getDrink().getCommand())
 		.append(order.isHot() ? "h": "")
 		.append(":")
 		.append(order.getSucre() > 0 ? order.getSucre() : "")
@@ -34,32 +34,32 @@ public class MakerImpl implements Maker, EmailNotifier {
 
 	@Override
 	public void addDrinkToReport(Drink drink,Double amount){
-		if(!this.amountReport.containsKey(drink.getType())){
-			this.amountReport.put(drink.getType(), amount);
-			this.numberReport.put(drink.getType(), 1);
+		if(!this.amountReport.containsKey(drink)){
+			this.amountReport.put(drink, amount);
+			this.numberReport.put(drink, 1);
 		}else{
-			Double oldAmount = this.amountReport.get(drink.getType());
-			Integer oldNumber = this.numberReport.get(drink.getType());
-			this.amountReport.put(drink.getType(), oldAmount+ amount);
-			this.numberReport.put(drink.getType(), oldNumber++);
+			Double oldAmount = this.amountReport.get(drink);
+			Integer oldNumber = this.numberReport.get(drink);
+			this.amountReport.put(drink, oldAmount+ amount);
+			this.numberReport.put(drink, oldNumber++);
 		}
 	}
 	@Override
 	public void printReport(Drink drink){
-		System.out.println("Amount of " + drink.name()+ " sold is : " + (this.amountReport.get(drink.getType())!=null ? this.amountReport.get(drink.getType()): 0));
-		System.out.println("Number of " + drink.name()+ " sold is : " + (this.numberReport.get(drink.getType())!=null ? this.numberReport.get(drink.getType()):0));
+		System.out.println("Amount of " + drink.name()+ " sold is : " + (this.amountReport.get(drink)!=null ? this.amountReport.get(drink): 0));
+		System.out.println("Number of " + drink.name()+ " sold is : " + (this.numberReport.get(drink)!=null ? this.numberReport.get(drink):0));
 	}
 	@Override
-	public Map<String, Double> getAmountReport(){
+	public Map<Drink, Double> getAmountReport(){
 		return this.amountReport;
 	}
 
-	public Map<String, Integer> getNumberReport(){
+	public Map<Drink, Integer> getNumberReport(){
 		return this.numberReport;
 	}
 
 	public boolean isEmpty(Drink drink) {
-		return beverageQuantityChecker.isEmpty(drink.getType());
+		return beverageQuantityChecker.isEmpty(drink.name());
 	}
 
 	@Override

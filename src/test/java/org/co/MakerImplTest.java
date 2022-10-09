@@ -28,10 +28,10 @@ class MakerImplTest {
         assertEquals(maker.transformer(Thea), "T:2:0");
 
         assertEquals(maker.getAmountReport().size(), 4);
-        assertEquals(maker.getAmountReport().get(Drink.JUICE.getType()),1);
-        assertEquals(maker.getAmountReport().get(Drink.COFFEE.getType()),1);
-        assertEquals(maker.getAmountReport().get(Drink.CHOCOLATE.getType()),2);
-        assertEquals(maker.getAmountReport().get(Drink.THE.getType()),2);
+        assertEquals(maker.getAmountReport().get(Drink.JUICE),1);
+        assertEquals(maker.getAmountReport().get(Drink.COFFEE),1);
+        assertEquals(maker.getAmountReport().get(Drink.CHOCOLATE),2);
+        assertEquals(maker.getAmountReport().get(Drink.THE),2);
 
     }
 }

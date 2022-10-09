@@ -8,6 +8,6 @@ public interface Maker {
 	void addDrinkToReport(Drink drink,Double amount);
 	void printReport(Drink drink);
 
-	Map<String, Double>  getAmountReport();
+	Map<Drink, Double> getAmountReport();
 
 }
