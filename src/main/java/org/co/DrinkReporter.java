@@ -19,7 +19,7 @@ public class DrinkReporter {
             Double oldAmount = this.amountReport.get(drink);
             Integer oldNumber = this.numberReport.get(drink);
             this.amountReport.put(drink, add(oldAmount, drink.getPrice()));
-            this.numberReport.put(drink, oldNumber++);
+            this.numberReport.put(drink, oldNumber + 1);
         } else {
             this.amountReport.put(drink, drink.getPrice());
             this.numberReport.put(drink, 1);
