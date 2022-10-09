@@ -38,4 +38,8 @@ public class Order {
 	public boolean isHot() {
 		return hot;
 	}
+
+	boolean isAmountLowerThanPrice() {
+		return this.drink.isPriceHigherThan(amount);
+	}
 }

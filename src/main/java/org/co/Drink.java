@@ -14,5 +14,9 @@ public enum Drink {
 		this.type = type;
 		this.price = price;
 	}
-	
+
+	public boolean isPriceHigherThan(double amount) {
+		return this.price > amount;
+	}
+
 }

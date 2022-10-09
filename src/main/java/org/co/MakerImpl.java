@@ -14,7 +14,7 @@ public class MakerImpl implements Maker, BeverageQuantityChecker, EmailNotifier 
 			notifyMissingDrink(order.getDrink().name());
 			return "Sorry!! we have a shortage of " + order.getDrink().name() + ", an E-mail was sent to the company!";
 		}
-		if(order.getAmount() < order.getDrink().price) {
+		if(order.isAmountLowerThanPrice()) {
 			return "M:{the amount is lower than the drink price you need: " + ( order.getDrink().price - order.getAmount()) +" }";
 		}
 		StringBuilder res = new StringBuilder();
@@ -27,6 +27,7 @@ public class MakerImpl implements Maker, BeverageQuantityChecker, EmailNotifier 
 		addDrinkToReport(order.getDrink(), order.getAmount());
 		return res.toString();
 	}
+
 	@Override
 	public void addDrinkToReport(Drink drink,Double amount){
 		if(!this.amountReport.containsKey(drink.type)){
@@ -55,7 +56,7 @@ public class MakerImpl implements Maker, BeverageQuantityChecker, EmailNotifier 
 
 	@Override
 	public boolean isEmpty(String drink) {
-		return true;
+		return false;
 	}
 
 	@Override
