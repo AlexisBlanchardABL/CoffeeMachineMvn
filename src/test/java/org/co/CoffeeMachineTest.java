@@ -54,8 +54,8 @@ class CoffeeMachineTest {
         //Drink maker will make an extra hot chocolate with one sugar and a stick
         Order hotChocolate = new Order(Drink.CHOCOLATE,1, 2d, true );
         //The drink maker will make an extra hot tea with two sugar and a stick
-        Order hotThea = new Order(Drink.THE, 2, 1d, true);
-        Order Thea = new Order(Drink.THE, 2, 1d, false);
+        Order hotTea = new Order(Drink.TEA, 2, 1d, true);
+        Order tea = new Order(Drink.TEA, 2, 1d, false);
 
         coffeeMachine.order(juice);
         verify(drinkReporter).addDrink(juice.getDrink());
@@ -69,12 +69,12 @@ class CoffeeMachineTest {
         verify(drinkReporter).addDrink(hotChocolate.getDrink());
         verify(drinkMaker).receive("Hh:1:0");
 
-        coffeeMachine.order(hotThea);
-        verify(drinkReporter).addDrink(hotThea.getDrink());
+        coffeeMachine.order(hotTea);
+        verify(drinkReporter).addDrink(hotTea.getDrink());
         verify(drinkMaker).receive("Th:2:0");
 
-        coffeeMachine.order(Thea);
-        verify(drinkReporter, times(2)).addDrink(Thea.getDrink());
+        coffeeMachine.order(tea);
+        verify(drinkReporter, times(2)).addDrink(tea.getDrink());
         verify(drinkMaker).receive("T:2:0");
     }
 

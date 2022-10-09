@@ -2,7 +2,7 @@ package org.co;
 
 public enum Drink {
 	
-	THE("T",0.4d),
+	TEA("T",0.4d),
 	COFFEE("C",0.6d),
 	CHOCOLATE("H",0.5d ),
 	JUICE("O", 0.6d);
