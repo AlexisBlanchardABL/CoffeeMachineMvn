@@ -37,9 +37,9 @@ public class CoffeeMachine {
 						.append(order.getDrink().getCommand())
 						.append(order.isHot() ? "h": "")
 						.append(":")
-						.append(order.getSucre() > 0 ? order.getSucre() : "")
+						.append(order.getSugar() > 0 ? order.getSugar() : "")
 						.append(":")
-						.append(order.getSucre() > 0 ? "0" : "").toString()
+						.append(order.getSugar() > 0 ? "0" : "").toString()
 		);
 	}
 
