@@ -2,7 +2,7 @@ package org.co;
 
 public class Main {
     public static void main(String[] args) {
-        Maker maker = new MakerImpl();
+        Maker maker = new MakerImpl(drink -> true);
         System.out.println(maker.transformer(new Order(Drink.THE, 2, 1d, true)));
         System.out.println(maker.transformer(new Order(Drink.COFFEE, 1, 0.2d, true)));
         System.out.println(maker.transformer(new Order(Drink.COFFEE, 1, 0.8d, true)));

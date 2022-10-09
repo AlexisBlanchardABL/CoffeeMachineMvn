@@ -9,7 +9,7 @@ class MakerImplTest {
 
     @Test
     void transformer() {
-        Maker maker = new MakerImpl();
+        Maker maker = new MakerImpl(drink -> false);
         //Drink maker will make one orange juice
         Order juice = new Order(Drink.JUICE, 0, 1d, false);
         //Drink maker will make an extra hot coffee with no sugar
